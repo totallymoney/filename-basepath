@@ -1,6 +1,6 @@
 {
   "name": "@totallymoney/filename-basepath",
-  "version": "1.1.7",
+  "version": "0.0.0",
   "description": "Mount express routes using filename as basepath",
   "main": "index.js",
   "author": "totallymoney",
