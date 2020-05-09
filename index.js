@@ -33,7 +33,11 @@ function start(argv) {
     console.info(basePath);
     app.use(basePath, require(filePath));
   });
-  app.get("/", (_, res) => { res.send(new Date());})
+  app.use("/", (_, res) => {
+    res
+      .status(404)
+      .send("Running filename-basepath server: nothing at the root!");
+  });
   app.use(morgan("dev"));
   app.listen(argv.port, () => {
     console.info(`Running on port ${argv.port}`);

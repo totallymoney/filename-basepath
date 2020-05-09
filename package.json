@@ -14,7 +14,7 @@
     "filename-basepath": "index.js"
   },
   "scripts": {
-    "postpublish": "git push && git push --tags"
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "express": "^4.17.1",
