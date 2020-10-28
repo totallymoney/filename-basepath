@@ -27,12 +27,14 @@ require("yargs")
 
 function start(argv) {
   console.info(`Sourcing routes from: ${argv.dir}`);
-  fs.readdirSync(argv.dir).forEach((filename) => {
-    var filePath = path.join(argv.dir, filename);
-    var basePath = "/" + filename.split(".")[0];
-    console.info(basePath);
-    app.use(basePath, require(filePath));
-  });
+  fs.readdirSync(argv.dir)
+    .filter((p) => p.endsWith(".js"))
+    .forEach((filename) => {
+      var filePath = path.join(argv.dir, filename);
+      var basePath = "/" + filename.split(".")[0];
+      console.info(basePath);
+      app.use(basePath, require(filePath));
+    });
   app.use("/", (_, res) => {
     res
       .status(404)
