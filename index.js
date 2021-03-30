@@ -35,10 +35,17 @@ function start(argv) {
       console.info(basePath);
       app.use(basePath, require(filePath));
     });
-  app.use("/", (_, res) => {
+  app.use("/", (req, res) => {
     res
       .status(404)
-      .send("Running filename-basepath server: nothing at the root!");
+      .send({
+        error: "Filename-basepath server: fall-through handler reached! The request didn't match any handlers",
+        request: {
+          path: req.path,
+          method: req.method,
+          headers: req.headers
+        }
+      });
   });
   app.use(morgan("dev"));
   app.listen(argv.port, () => {
